@@ -8,7 +8,7 @@ Artificial Rodrigo would take on the case of tweet classification, and try predi
 ### Collecting the Data
 The data collection for the music generation was pretty simple. We paid a musician on fiver to record an hour of midi solos for us to use. The data processing for a midi file has relatively few pieces of information as shown here:
 
-[midi image](/images/midi.png)
+![midi image](/images/midi.png)
 
 There was a small issue with our input data such that the model did not like have different tempos, so we had to adjust the data points where the tempo was different so that the model could accurately predict. Other than that there were no issues with the data, which shows that even though we paid to get out data, it paid to have clean data.
 

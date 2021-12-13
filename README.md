@@ -24,7 +24,7 @@ More EDA was performed on the music than on the tweets. For that reason we can s
 
 From this we can see that his pitches (or notes) centered around the middle of the pitch range, or near the center of the keyboard. Translating this into notes we can see:
 
-![note distribution](/images/notes.png)
+![note distribution](/images/note.png)
 
 The distribution of these notes likely indicates that he was playing in E major (where there are 4 sharps, on F#, C#, G# and D# indicated by the higher frequency of these notes as opposed to their natural counter-parts), though perhaps a classifier to predict key signature would be an interesting project for future work. 
 

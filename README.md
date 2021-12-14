@@ -6,11 +6,15 @@ Initially we had set out to answer the question, "Can a generative model create 
 Artificial Rodrigo would take on the case of tweet classification, and try predicting whether a tweet is about a real natural disaster or not. The source for this inspiration can be found at this [Kaggle competition](https://www.kaggle.com/c/nlp-getting-started). The format of this project will discuss the parts of each project that we have done, the combination of which is Artificial Rodrigo. And who knows, one day maybe we will build a monolithic NLP model that will be able to handle both tasks.
 
 ## Collecting the Data
+
+### Music Generation
 The data collection for the music generation was pretty simple. We paid a musician on fiver to record an hour of midi solos for us to use. The data processing for a midi file has relatively few pieces of information as shown here:
 
 ![midi data image](/images/midi.png)
 
 There was a small issue with our input data such that the model did not like have different tempos, so we had to adjust the data points where the tempo was different so that the model could accurately predict. Other than that there were no issues with the data, which shows that even though we paid to get out data, it paid to have clean data.
+
+### Disaster Prediction
 
 The data collection for the disaster prediction kaggle competition was even simpler, as the competition provided both a training and test set already for us to use. There were few if any null values in this dataset and it came clean and ready to use which was extremely nice.
 
@@ -36,7 +40,7 @@ Lastly, one of the most interesting features that we can use for predictions is 
 
 ![note bigrams](/images/bigrams.png)
 
-### Tweet Analysis
+### Disaster Prediction
 Taking a look at the twitter data, we can see that about 42% of the tweets are actually about a natural disaster, which is good for our model because we don't have skewed classes.
 
 Also looking at the rules we made for experimentation the following features have strong correlation to our target prediction.
@@ -50,5 +54,19 @@ Exploring a little bit more we can see some of the locations that are most commo
 
 ## Model(s)
 
+### Music Generation
+The model we tried using for music generation was where we ran into issues. We really wanted to use a transformer-based neural network. The best one we found out there was something called [Magenta](https://magenta.tensorflow.org/), but we ran into a lack of proper documentation on how to train this from scratch. We knew we could load in a pretrained model and give it our midi file as a primer for the next part of the sequence, but we wanted to train it completely from scratch. As such the lack of documentation prevented us from progressing further with this model and was ultimately the reason why we pivoted our project so much.
+
+### Tweet Analysis
+We decided to use a pretrained language model called BERT from [Hugging Face](https://huggingface.co/), a website where you can download and use many models. BERT is currently the state-of-the-art for natural language processing, and is built on a transformer architecture of a neural network. After training we received the following score:
+
+![A picture of the Bert results](/images/bert.png)
+
+We then added these predictions into our dataset and trained both a Random Forrest Classifier and Logistic Regression with our augmented data. Unfortunately, the accuracy decreased with the additions of these classifiers. Our best predictions were submitted to kaggle.
 
 ## Results
+It is quite remarkable how state-of-the-art and simple it is for anyone to us BERT and achieve results like ours. On [Kaggle](https://www.kaggle.com/c/nlp-getting-started) at the time of submitted we ranked 171 out of 924 submissions, and we were only 2% away from the top 50.
+
+![A snapshot of our results on kaggle](/images/results.png)
+
+Overall our results were pretty astounding and are definitely noteworthy.
